@@ -1,5 +1,5 @@
 from load_file import data_loader, objects_creator
-from main import Category, Product
+
 
 """файл для запуска программы """
 
