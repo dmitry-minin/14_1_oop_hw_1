@@ -14,3 +14,15 @@ def product1():
 def category1(product1):
     return Category("Смартфоны", "Смартфоны, как средство не только коммуникации,"
                                  " но и получения дополнительных функций для удобства жизни", [product1])
+
+
+@pytest.fixture
+def new_product_dict():
+    return {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера",
+            "price": 180000.0, "quantity": 5}
+
+
+@pytest.fixture(autouse=True)
+def reset_class_atributes():
+    Category.category_count = 0
+    Category.product_count = 0
