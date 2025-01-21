@@ -15,3 +15,8 @@ def test_add_product(category1, product1):
     assert category1.product_count == 2
     assert category1.products == ('Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.\n'
                                   'Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.')
+
+
+def test_category_str(category1):
+    """Тест конвертации экземпляра Category в строку метод __str__"""
+    assert str(category1) == 'Смартфоны, количество продуктов: 5 шт.'

@@ -51,3 +51,13 @@ def test_price_setter_user_reject(product1, monkeypatch):
     monkeypatch.setattr("builtins.input", lambda _: "n")
     product1.price = 130000
     assert product1.price == 180000
+
+
+def test_product_str(product1):
+    """Тест конвертации экземпляра Product в строку метод __str__"""
+    assert str(product1) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
+
+
+def test_add_product(product1, product2):
+    """Тест функциональности сложения атрибутов экземпляров (общая цена) класса методом __add__"""
+    assert product1 + product2 == 2580000.0
