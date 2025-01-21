@@ -9,6 +9,10 @@ def product1():
                    180000.0, 5)
 
 
+@pytest.fixture
+def product2():
+    return Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+
 
 @pytest.fixture
 def category1(product1):
