@@ -61,3 +61,11 @@ def test_product_str(product1):
 def test_add_product(product1, product2):
     """Тест функциональности сложения атрибутов экземпляров (общая цена) класса методом __add__"""
     assert product1 + product2 == 2580000.0
+
+
+def test_add_incorrect_type_to_product(product1):
+    """Тест попытки сложения экземпляра Product с не-Product объектом"""
+    with pytest.raises(TypeError):
+        _ = product1 + 100
+    with pytest.raises(TypeError):
+        _ = product1 + "string"
