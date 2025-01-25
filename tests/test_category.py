@@ -1,4 +1,7 @@
-def test_category_initialization(category1):
+import pytest
+
+
+def test_category_init(category1):
     """Тест инициализации категории с продуктом"""
     assert category1.name == "Смартфоны"
     assert category1.description == ("Смартфоны, как средство не только коммуникации,"
@@ -15,6 +18,13 @@ def test_add_product(category1, product1):
     assert category1.product_count == 2
     assert category1.products == ('Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.\n'
                                   'Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.')
+
+
+def test_add_product_other_type(category1):
+    with pytest.raises(TypeError):
+        _ = category1.add_product(123)
+    with pytest.raises(TypeError):
+        _ = category1.add_product(["New bicycle", 200000])
 
 
 def test_category_str(category1):
