@@ -1,7 +1,6 @@
-from src.main import Category
-from src.main import Product
-from src.main import Smartphone
-from src.main import LawnGrass
+from src.category_class import Category
+from src.product_class import Product, Smartphone, LawnGrass
+from src.order_class import Order
 import pytest
 
 
@@ -50,6 +49,11 @@ def lawn_grass_product1():
 def lawn_grass_product2():
     return LawnGrass("Газонная трава 2", "Выносливая трава", 450.0, 15,
                      "США", "5 дней", "Темно-зеленый")
+
+
+@pytest.fixture
+def order1(product1):
+    return Order(product1, 3)
 
 
 @pytest.fixture(autouse=True)
