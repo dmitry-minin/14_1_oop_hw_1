@@ -3,7 +3,9 @@ from src.main import Product
 
 
 class CategoryIter:
-    """Класс для итерирования по категориям"""
+    """
+    Класс для итерирования по категориям
+    """
 
     def __init__(self, category: Category):
         self.category = category
