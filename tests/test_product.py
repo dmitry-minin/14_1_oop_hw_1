@@ -98,3 +98,14 @@ def test_product_mixin_print(product1, capsys):
     product1.print_info()
     captured = capsys.readouterr()
     assert captured.out == "Product('Samsung Galaxy S23 Ultra', '256GB, Серый цвет, 200MP камера', 180000.0, 5)\n"
+
+
+def test_product_init_with_incorrect_quantity():
+    """
+    Тест инициализации продукта с некорректным значением quantity
+    where quantity <= 0
+    """
+    with pytest.raises(ValueError):
+        Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 0)
+    with pytest.raises(ValueError):
+        Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, -1)

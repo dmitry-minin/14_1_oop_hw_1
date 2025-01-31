@@ -1,4 +1,5 @@
 from src.order_class import Order
+from src.quantity_exception import OrderQuantity, OrderLowQuantity
 import pytest
 
 
@@ -20,8 +21,32 @@ def test_order_init_value_error(order1):
     """
     Тестирование init для класса ордер с некорректным значением order_quantity
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(OrderLowQuantity):
         Order(order1.product, 6)
+
+
+def test_order_init_quantity_below_zero(order1):
+    """
+    Тестирование init для класса ордер с некорректным значением order_quantity
+    """
+    with pytest.raises(OrderQuantity):
+        Order(order1.product, -1)
+
+
+def test_order_init_quantity_error_message(product1):
+    """
+    Тестирование init для класса ордер с некорректным значением order_quantity
+    """
+    with pytest.raises(OrderQuantity, match='Количество товара в заказе не может быть нулевым или отрицательным'):
+        Order(product1, -1)
+
+
+def test_order_init_incorrect_product():
+    """
+    Тестирование init для класса ордер с некорректным экземпляром продукта
+    """
+    with pytest.raises(TypeError):
+        Order(123, 1)
 
 
 def test_order_str(order1):
