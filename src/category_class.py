@@ -25,6 +25,13 @@ class Category(BaseCategoryOrder):
             total_quantity_of_products += product.quantity
         return f"{self.name}, количество продуктов: {total_quantity_of_products} шт."
 
+    @property
+    def products(self) -> str:
+        """
+        Возвращает список продуктов в виде текстовой строки
+        """
+        return "\n".join([f"{p}" for p in self.__products])
+
     def add_product(self, product: Product):
         """
         Метод для добавления нового продукта в список.
@@ -36,9 +43,14 @@ class Category(BaseCategoryOrder):
         else:
             raise TypeError("Добавляемый продукт не относится к продуктам")
 
-    @property
-    def products(self) -> str:
+    def middle_price(self):
         """
-        Возвращает список продуктов в виде текстовой строки
+        Возвращает среднюю цену всех продуктов в категории, округленный до двух знаков после запятой.
         """
-        return "\n".join([f"{p}" for p in self.__products])
+        try:
+            avg_price = (sum([p.price * p.quantity for p in self.__products]) /
+                         sum([p.quantity for p in self.__products]))
+        except ZeroDivisionError:
+            return 0
+        else:
+            return round(avg_price, 2)
